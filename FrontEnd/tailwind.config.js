@@ -123,8 +123,20 @@ module.exports = {
         800: "#171717",
         900: "#141414",
       },
+      orange: {
+        100: "#B5B5B5",
+      },
     },
     extend: {
+      keyframes: {
+        rotate180: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(180deg)" },
+        },
+      },
+      animation: {
+        rotate180: "rotate180 0.5s ease-in-out forwards",
+      },
       maxWidth: {
         maxContent: "1260px",
         maxContentTab: "650px",
