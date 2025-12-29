@@ -20,7 +20,8 @@ const Home = () => {
         className="relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center 
       text-white justify-between"
       >
-        {/* signup pr le jaiga */}
+        {/* signup pr le jaiga */}{" "}
+        {/**group is used to style child elements  based on the state of a parent element */}
         <Link to={"/signup"}>
           <div
             className=" group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200
@@ -28,27 +29,24 @@ const Home = () => {
           >
             <div
               className="flex flex-row items-center gap-2 rounded-full px-10 py-[5px]
-                transition-all duration-200 group-hover:bg-richblack-900"
+                transition-all duration-200 group-hover:bg-richblack-900" //on hover parent group bg color changes
             >
               <p>Become an Instructor</p>
               <FaArrowRight />
             </div>
           </div>
         </Link>
-
         <div className="text-center text-4xl font-semibold mt-7">
           Empower Your Future with
           <HighlightText text={"Coding Skills"} />
           {/* span tag v use kr skte hai */}
         </div>
-
         <div className=" mt-4 w-[90%] text-center text-lg font-bold text-richblack-300">
           With our online coding courses, you can learn at your own pace, from
           anywhere in the world, and get access to a wealth of resources,
           including hands-on projects, quizzes, and personalized feedback from
           instructors.
         </div>
-
         <div className="flex flex-row gap-7 mt-8">
           {/**call to action */}
           <CTAButton active={true} linkto={"/signup"}>
@@ -58,19 +56,19 @@ const Home = () => {
           <CTAButton active={false} linkto={"/login"}>
             Book a Demo
           </CTAButton>
-        </div>
 
-        <div className=" mx-3 my-12 shadow-white bg-white">
+          {/**h/w */}
+        </div>
+        <div className=" relative  w-[900px] h-[515px]  mx-3 my-12  bg-white bg-gradient-to-t">
           <video
             muted
             loop
             autoPlay
-            className="h-[515px] w-[1,035px] top-[458px] left-[203px]"
+            className="absolute h-[515px] pr-5 object-cover "
           >
             <source src={Banner} type="video/mp4" />
           </video>
         </div>
-
         {/* Code Section 1 */}
         <div>
           <CodeBlocks
@@ -109,9 +107,11 @@ const Home = () => {
             codeColor={
               "bg-gradient-to-b from-yellow-50 via-blue-50 to-yellow-50 text-transparent bg-clip-text"
             }
+            backgroudGradient={
+              "bg-gradient-to-r from-[#d1d5db] via-[#6b7280] to-[#374151]"
+            }
           />
         </div>
-
         {/* Code Section 2 */}
         <div className="">
           <CodeBlocks
@@ -124,7 +124,7 @@ const Home = () => {
               </div>
             }
             subheading={
-              "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
+              "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
             }
             ctabtn1={{
               btnText: "Continue Learning",
@@ -150,6 +150,9 @@ const Home = () => {
 `}
             codeColor={
               "bg-gradient-to-b from-yellow-50 via-blue-50 to-yellow-50 text-transparent bg-clip-text"
+            }
+            backgroudGradient={
+              "bg-gradient-to-r from-[#d1d5db] via-[#6b7280] to-[#374151]"
             }
           />
         </div>
@@ -215,13 +218,12 @@ text-transparent"
       <div className="w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 first-letter bg-richblack-900 text-white">
         <InstructorSection />
 
-        <h2 className="text-center text-4xl font-semobold mt-10">
+        <h2 className="text-center text-4xl font-semibold mt-10">
           review from Other Learners
         </h2>
         {/* Review Slider here */}
       </div>
 
-      {/*Footer */}
       <Footer />
     </div>
   );

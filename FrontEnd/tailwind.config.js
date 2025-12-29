@@ -7,6 +7,11 @@ module.exports = {
       "edu-sa": ["Edu SA Beginner", "cursive"],
       mono: ["Roboto Mono", "monospace"],
     },
+    safelist: [
+      {
+        pattern: /(bg|from|via|to)-(.*)/,
+      },
+    ],
     colors: {
       white: "#fff",
       black: "#000",
