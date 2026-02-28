@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo/Logo-Full-Light.png";
 
 // Icons
-import { FaInstagram, FaGoogle, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"];
 const Resources = [
@@ -46,11 +46,11 @@ const Footer = () => {
                   );
                 })}
               </div>
-              <div className="flex gap-3 text-lg hover:cursor-pointer">
-                <FaInstagram className="hover:text-richblack-50 hover:shadow-caribbeangreen-5 hover:transition-all duration-200" />
-                <FaGoogle className="hover:text-richblack-50 hover:shadow-caribbeangreen-5 hover:transition-all duration-200" />
-                <FaTwitter className="hover:text-richblack-50 hover:shadow-caribbeangreen-5 hover:transition-all duration-200" />
-                <FaYoutube className="hover:text-richblack-50 hover:shadow-caribbeangreen-5 hover:transition-all duration-200" />
+              <div className="flex gap-3 text-lg">
+                <FaFacebook />
+                <FaGoogle />
+                <FaTwitter />
+                <FaYoutube />
               </div>
               <div></div>
             </div>
@@ -172,7 +172,7 @@ const Footer = () => {
             })}
           </div>
 
-          <div className="text-center">Made with ❤️ © StudyNotion</div>
+          <div className="text-center">Made with ❤️ CodeHelp © 2023 Studynotion</div>
         </div>
       </div>
     </div>
