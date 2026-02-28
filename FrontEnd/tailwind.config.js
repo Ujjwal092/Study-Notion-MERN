@@ -146,6 +146,10 @@ module.exports = {
         maxContent: "1260px",
         maxContentTab: "650px",
       },
+      backgroundImage: {
+        "blue-text-gradient":
+          "linear-gradient(135deg, #118AB2, #47A5C5, #83F1DE)",
+      },
     },
   },
   plugins: [],
