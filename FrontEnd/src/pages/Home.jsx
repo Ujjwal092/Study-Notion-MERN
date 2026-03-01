@@ -23,11 +23,11 @@ const Home = () => {
         <Link to={"/signup"}>
           <div
             className=" group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200
-            transition-all duration-200 hover:scale-95 w-fit"
+            transition-all duration-200 hover:scale-95 w-fit drop-shadow-[0_1.5px_rgba(255,255,255,0.25)] "
           >
             <div
               className="flex flex-row items-center gap-2 rounded-full px-10 py-[5px]
-                transition-all duration-200 group-hover:bg-richblack-900"
+                transition-all duration-200 group-hover:bg-richblack-900 "
             >
               <p>Become an Instructor</p>
               <FaArrowRight />
@@ -97,12 +97,12 @@ const Home = () => {
               "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
             }
             ctabtn1={{
-              btnText: "try it yourself",
+              btnText: "Try it Yourself",
               linkto: "/signup",
               active: true,
             }}
             ctabtn2={{
-              btnText: "learn more",
+              btnText: "Learn More",
               linkto: "/login",
               active: false,
             }}
@@ -118,32 +118,32 @@ const Home = () => {
             glowColor="yellow"
             heading={
               <div className="text-4xl font-semibold">
-                Unlock Your
-                <HighlightText text={"coding potential"} />
-                with our online courses
+                Start learning
+                <HighlightText text={"coding with projects"} />
+                One step solution for your success
               </div>
             }
             subheading={
               "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
             }
             ctabtn1={{
-              btnText: "try it yourself",
+              btnText: "Continue Lesson",
               linkto: "/signup",
               active: true,
             }}
             ctabtn2={{
-              btnText: "learn more",
+              btnText: "Learn More",
               linkto: "/login",
               active: false,
             }}
             codeblock={`def greet(name):
-    course = "Nexora Pro"
-    level = "Beginner"
-    print(f"Welcome {name} 🚀")
-    print(f"Course: {course}")
-    print(f"Level: {level}")
-    return "Start Learning"
-greet("Future Developer")`}
+                        course = "Nexora Pro"
+                        level = "Beginner"
+                        print(f"Welcome {name} 🚀")
+                        print(f"Course: {course}")
+                        print(f"Level: {level}")
+                        return "Start Learning"
+                        greet("Future Developer")`}
             codeColor={"text-yellow-25"}
           />
         </div>
@@ -153,9 +153,12 @@ greet("Future Developer")`}
 
       {/*Section 2  */}
       <div className="bg-pure-greys-5 text-richblack-700">
-        <div className="homepage_bg h-[310px]">
+        {/**image + button actual width is w-screen  here w maxContent: "1260px*/}
+
+        <div className="homepage_ bg h-[310px]">
           <div className="w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-5 mx-auto">
             <div className="h-[150px]"></div>
+
             <div className="flex flex-row gap-7 text-white ">
               <CTAButton active={true} linkto={"/signup"}>
                 <div className="flex items-center gap-3">
@@ -199,7 +202,7 @@ greet("Future Developer")`}
       <div className="w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 first-letter bg-richblack-900 text-white">
         <InstructorSection />
 
-        <h2 className="text-center text-4xl font-semobold mt-10">
+        <h2 className="text-center text-4xl font-semibold mt-10">
           review from Other Learners
         </h2>
         {/* Review Slider here */}

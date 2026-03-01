@@ -77,11 +77,14 @@ const CodeBlocks = ({
             className={`flex-1 font-mono text-sm leading-7 h-[275px] overflow-hidden ${codeColor}`}
           >
             <TypeAnimation
-              sequence={[codeblock]}
+              sequence={[
+                codeblock,
+                1000,
+                () => {}, // prevents crash loop
+              ]}
               repeat={Infinity}
               cursor={true}
               speed={60}
-              omitDeletionAnimation={true}
             />
           </div>
         </div>

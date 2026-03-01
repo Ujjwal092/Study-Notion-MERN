@@ -4,7 +4,7 @@ import React from "react";
 import { HiUsers } from "react-icons/hi";
 import { ImTree } from "react-icons/im";
 
-const CourseCard = ({cardData, currentCard, setCurrentCard}) => {
+const CourseCard = ({ cardData, currentCard, setCurrentCard }) => {
   return (
     <div
       className={`w-[360px] lg:w-[30%] ${
@@ -28,7 +28,9 @@ const CourseCard = ({cardData, currentCard, setCurrentCard}) => {
 
       <div
         className={`flex justify-between ${
-          currentCard === cardData?.heading ? "text-blue-300" : "text-richblack-300"
+          currentCard === cardData?.heading
+            ? "text-blue-300"
+            : "text-richblack-300"
         } px-6 py-3 font-medium`}
       >
         {/* Level */}
@@ -40,7 +42,7 @@ const CourseCard = ({cardData, currentCard, setCurrentCard}) => {
         {/* Flow Chart */}
         <div className="flex items-center gap-2 text-[16px]">
           <ImTree />
-          <p>{cardData?.lessionNumber} Lession</p>
+          <p>{cardData?.lessonNumber} Lesson</p>
         </div>
       </div>
     </div>

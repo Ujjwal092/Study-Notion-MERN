@@ -15,12 +15,12 @@ const ExploreMore = () => {
   const [currentTab, setCurrentTab] = useState(tabsName[0]);
   const [courses, setCourses] = useState(HomePageExplore[0].courses);
   const [currentCard, setCurrentCard] = useState(
-    HomePageExplore[0].courses[0].heading
+    HomePageExplore[0].courses[0].heading, //current card yellow
   );
 
   const setMyCards = (value) => {
     setCurrentTab(value);
-    const result = HomePageExplore.filter((course) => course.tag === value);
+    const result = HomePageExplore.filter((course) => course.tag === value); //on course tag filter and store it in result
     setCourses(result[0].courses);
     setCurrentCard(result[0].courses[0].heading);
   };
@@ -43,13 +43,15 @@ const ExploreMore = () => {
         {tabsName.map((ele, index) => {
           return (
             <div
-              className={` text-[16px] flex flex-row items-center gap-2 ${
-                currentTab === ele
-                  ? "bg-richblack-900 text-richblack-5 font-medium"
-                  : "text-richblack-200"
-              } px-7 py-[7px] rounded-full transition-all duration-200 cursor-pointer hover:bg-richblack-900 hover:text-richblack-5`}
+              className={` text-[16px] flex flex-row items-center gap-2
+               ${
+                 currentTab === ele
+                   ? "bg-richblack-900 text-richblack-5 font-medium"
+                   : "text-richblack-200" //in case unselected grey krdo
+               }
+               px-7 py-[7px] rounded-full transition-all duration-200 cursor-pointer hover:bg-richblack-900 hover:text-richblack-5`}
               key={index}
-              onClick={() => setMyCards(ele)}
+              onClick={() => setMyCards(ele)} //set all changes
             >
               {ele}
             </div>

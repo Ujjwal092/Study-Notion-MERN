@@ -9,8 +9,8 @@ const Button = ({ children, active, linkto }) => {
         transition-all duration-300 transform
         ${
           active
-            ? "bg-yellow-50 text-black shadow-lg shadow-yellow-50/40 hover:shadow-yellow-50/60"
-            : "bg-richblack-800 text-white shadow-md hover:shadow-xl"
+            ? "bg-yellow-50 text-black shadow-lg shadow-yellow-50/40     hover:shadow-yellow-50/60 "
+            : "bg-richblack-800 text-white shadow-md hover:shadow-xl drop-shadow-[0_1.5px_rgba(255,255,255,0.25)]"
         }
         hover:-translate-y-1
         `}
