@@ -21,7 +21,7 @@ exports.resetPasswordToken = async (req, res) => {
         token: token,
         resetPasswordExpires: Date.now() + 3600000,
       },
-      { new: true }
+      { new: true },
     );
     console.log("DETAILS", updatedDetails);
 
@@ -30,7 +30,7 @@ exports.resetPasswordToken = async (req, res) => {
     await mailSender(
       email,
       "Password Reset",
-      `Your Link for email verification is ${url}. Please click this url to reset your password.`
+      `Your Link for email verification is ${url}. Please click this url to reset your password.`,
     );
 
     res.json({
@@ -49,6 +49,7 @@ exports.resetPasswordToken = async (req, res) => {
 
 exports.resetPassword = async (req, res) => {
   try {
+    //all these data is used by backend
     const { password, confirmPassword, token } = req.body;
 
     if (confirmPassword !== password) {
@@ -74,7 +75,7 @@ exports.resetPassword = async (req, res) => {
     await User.findOneAndUpdate(
       { token: token },
       { password: encryptedPassword },
-      { new: true }
+      { new: true },
     );
     res.json({
       success: true,

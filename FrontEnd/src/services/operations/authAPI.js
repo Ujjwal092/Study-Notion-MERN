@@ -123,12 +123,25 @@ export function login(email, password, navigate) {
 export const googleLogin = (navigate) => async (dispatch) => {
   try {
     const result = await signInWithPopup(auth, provider);
-
     const user = result.user;
 
-    console.log("Google User:", user);
+    const name = user.displayName || "";
+    const nameParts = name.split(" ");
 
-    navigate("/dashboard");
+    const userData = {
+      firstName: nameParts[0],
+      lastName: nameParts.slice(1).join(" "),
+      email: user.email,
+      image: user.photoURL,
+    };
+
+    dispatch(setUser(userData));
+    dispatch(setToken("googleLoginToken"));
+
+    localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("token", "googleLoginToken");
+
+    navigate("/dashboard/my-profile");
   } catch (error) {
     console.log("Google Login Error:", error);
   }
@@ -149,6 +162,7 @@ export function logout(navigate) {
 export function getPasswordResetToken(email, setEmailSent) {
   return async (dispatch) => {
     dispatch(setLoading(true));
+    //backend call
     try {
       const response = await apiConnector("POST", RESETPASSTOKEN_API, {
         email,

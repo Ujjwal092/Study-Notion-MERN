@@ -6,7 +6,7 @@ const LearningGridArray = [
   {
     order: -1,
     heading: "World-Class Learning for",
-    highlightText: "Anyone, Anywhere",
+    highlightText: " Anyone, Anywhere",
     description:
       "Studynotion partners with more than 275+ leading universities and companies to bring flexible and affordable learning worldwide.",
     BtnText: "Learn More",
@@ -73,7 +73,7 @@ const LearningGrid = () => {
             </div>
           ) : (
             <>
-              <h3 className="text-lg text-white font-semibold">
+              <h3 className="text-lg text-white font-semibold ">
                 {card.heading}
               </h3>
 

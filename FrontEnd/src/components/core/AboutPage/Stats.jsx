@@ -20,7 +20,13 @@ const StatsComponent = () => {
             shadow-md hover:shadow-xl"
           >
             <h2 className="text-4xl font-bold text-yellow-50">
-              <CountUp end={data.count} duration={2.5} separator="," />
+              <CountUp
+                end={data.count}
+                duration={2}
+                separator=","
+                enableScrollSpy
+                scrollSpyOnce={false}
+              />
               {data.suffix}
             </h2>
 

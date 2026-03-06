@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 function VerifyEmail() {
   const [otp, setOtp] = useState("");
-  const { signupData, loading } = useSelector((state) => state.auth);
+  const { signupData, loading } = useSelector((state) => state.auth); //otp ke baad signup
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -41,8 +41,8 @@ function VerifyEmail() {
         password,
         confirmPassword,
         otp,
-        navigate
-      )
+        navigate,
+      ),
     );
   };
 

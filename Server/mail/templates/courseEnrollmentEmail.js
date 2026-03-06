@@ -1,87 +1,85 @@
 exports.courseEnrollmentEmail = (courseName, name) => {
-  return `<!DOCTYPE html>
-    <html>
-    
-    <head>
-        <meta charset="UTF-8">
-        <title>Course Registration Confirmation</title>
-        <style>
-            body {
-                background-color: #ffffff;
-                font-family: Arial, sans-serif;
-                font-size: 16px;
-                line-height: 1.4;
-                color: #333333;
-                margin: 0;
-                padding: 0;
-            }
-    
-    
-            .container {
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-                text-align: center;
-            }
-    
-            .logo {
-                max-width: 200px;
-                margin-bottom: 20px;
-            }
-    
-            .message {
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-    
-            .body {
-                font-size: 16px;
-                margin-bottom: 20px;
-            }
-    
-            .cta {
-                display: inline-block;
-                padding: 10px 20px;
-                background-color: #FFD60A;
-                color: #000000;
-                text-decoration: none;
-                border-radius: 5px;
-                font-size: 16px;
-                font-weight: bold;
-                margin-top: 20px;
-            }
-    
-            .support {
-                font-size: 14px;
-                color: #999999;
-                margin-top: 20px;
-            }
-    
-            .highlight {
-                font-weight: bold;
-            }
-        </style>
-    
-    </head>
-    
-    <body>
-        <div class="container">
-            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo" src="https://i.ibb.co/7Xyj3PC/logo.png"
-                    alt="StudyNotion Logo"></a>
-            <div class="message">Course Registration Confirmation</div>
-            <div class="body">
-                <p>Dear ${name},</p>
-                <p>You have successfully registered for the course <span class="highlight">"${courseName}"</span>. We
-                    are excited to have you as a participant!</p>
-                <p>Please log in to your learning dashboard to access the course materials and start your learning journey.
-                </p>
-                <a class="cta" href="https://studynotion-edtech-project.vercel.app/dashboard">Go to Dashboard</a>
-            </div>
-            <div class="support"> <a
-                    href="mailto:notionstudy08@gmail.com">notionstudy08@gmail.com</a>. We are here to help!</div>
-        </div>
-    </body>
-    
-    </html>`;
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Course Enrollment</title>
+</head>
+
+<body style="margin:0;background:#f5f6fa;font-family:Arial">
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td align="center">
+
+<table width="600" style="background:white;padding:30px;border-radius:10px">
+
+<tr>
+<td align="center">
+<img src="https://i.ibb.co/7Xyj3PC/logo.png" width="160"/>
+</td>
+</tr>
+
+<tr>
+<td align="center" style="padding-top:20px">
+<h2>🎉 Enrollment Successful</h2>
+</td>
+</tr>
+
+<tr>
+<td style="padding:10px 0;font-size:16px;color:#444">
+Hello <b>${name}</b>,
+</td>
+</tr>
+
+<tr>
+<td style="font-size:15px;color:#555">
+You have successfully enrolled in
+<b style="color:#000">${courseName}</b>.
+<br/><br/>
+Start learning now and explore the course dashboard.
+</td>
+</tr>
+
+<tr>
+<td align="center" style="padding:30px">
+<a href="https://studynotion-edtech-project.vercel.app/dashboard"
+style="
+background:#FFD60A;
+padding:14px 28px;
+text-decoration:none;
+color:black;
+font-weight:bold;
+border-radius:6px;
+display:inline-block">
+🚀 Go To Dashboard
+</a>
+</td>
+</tr>
+
+<tr>
+<td style="font-size:14px;color:#777">
+Need help? Contact us at  
+<a href="mailto:notionstudy08@gmail.com">
+notionstudy08@gmail.com
+</a>
+</td>
+</tr>
+
+<tr>
+<td align="center" style="padding-top:30px;font-size:12px;color:#aaa">
+© StudyNotion Learning Platform
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+`;
 };

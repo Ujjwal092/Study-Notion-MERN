@@ -1,75 +1,68 @@
 exports.passwordUpdated = (email, name) => {
-	return `<!DOCTYPE html>
-    <html>
-    
-    <head>
-        <meta charset="UTF-8">
-        <title>Password Update Confirmation</title>
-        <style>
-            body {
-                background-color: #ffffff;
-                font-family: Arial, sans-serif;
-                font-size: 16px;
-                line-height: 1.4;
-                color: #333333;
-                margin: 0;
-                padding: 0;
-            }
-    
-    
-            .container {
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-                text-align: center;
-            }
-    
-            .logo {
-                max-width: 200px;
-                margin-bottom: 20px;
-            }
-    
-            .message {
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-    
-            .body {
-                font-size: 16px;
-                margin-bottom: 20px;
-            }
-    
-            .support {
-                font-size: 14px;
-                color: #999999;
-                margin-top: 20px;
-            }
-    
-            .highlight {
-                font-weight: bold;
-            }
-        </style>
-    
-    </head>
-    
-    <body>
-        <div class="container">
-            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo"
-                    src="https://i.ibb.co/7Xyj3PC/logo.png" alt="StudyNotion Logo"></a>
-            <div class="message">Password Update Confirmation</div>
-            <div class="body">
-                <p>Hey ${name},</p>
-                <p>Your password has been successfully updated for the email <span class="highlight">${email}</span>.
-                </p>
-                <p>If you did not request this password change, please contact us immediately to secure your account.</p>
-            </div>
-            <div class="support">If you have any questions or need further assistance, please feel free to reach out to us
-                at
-                <a href="mailto:info@studynotion.com">info@studynotion.com</a>. We are here to help!
-            </div>
-        </div>
-    </body>
-    
-    </html>`;
+  return `
+<!DOCTYPE html>
+<html>
+<body style="margin:0;background:#f5f6fa;font-family:Arial">
+
+<table width="100%" align="center">
+<tr>
+<td align="center">
+
+<table width="600" style="background:white;padding:30px;border-radius:10px">
+
+<tr>
+<td align="center">
+<img src="https://i.ibb.co/7Xyj3PC/logo.png" width="160"/>
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<h2>🔐 Password Updated</h2>
+</td>
+</tr>
+
+<tr>
+<td style="font-size:16px;color:#444">
+Hello <b>${name}</b>,
+</td>
+</tr>
+
+<tr>
+<td style="font-size:15px;color:#555;padding-top:10px">
+Your password has been successfully updated for:
+<br/><br/>
+
+<b>${email}</b>
+
+<br/><br/>
+
+If you did NOT request this change please contact support immediately.
+</td>
+</tr>
+
+<tr>
+<td style="padding-top:20px;font-size:14px;color:#777">
+Support:
+<a href="mailto:info@studynotion.com">
+info@studynotion.com
+</a>
+</td>
+</tr>
+
+<tr>
+<td align="center" style="padding-top:30px;font-size:12px;color:#aaa">
+© StudyNotion Security Team
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+`;
 };

@@ -31,7 +31,7 @@ const About = () => {
           </p>
 
           {/* Banner Images */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-10 hover:scale-105 transition duration-300">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-10 ">
             <img
               src={BannerImage1}
               alt=""

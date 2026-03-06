@@ -48,7 +48,7 @@ function App() {
           element={
             <OpenRoute>
               <Login />
-            </OpenRoute>
+            </OpenRoute> //children = <Login />
           }
         />
         <Route
@@ -57,7 +57,7 @@ function App() {
             <OpenRoute>
               <ForgotPassword />
             </OpenRoute>
-          }
+          } //open route is for non logged in user
         />
         <Route
           path="verify-email"
