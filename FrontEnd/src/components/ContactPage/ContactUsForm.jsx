@@ -124,7 +124,7 @@ const ContactUsForm = () => {
           <input
             type="tel"
             autoComplete="tel"
-            placeholder="1234567890"
+            placeholder="Enter your 10 digit phone number"
             className="form-style flex-1"
             {...register("phoneNo", {
               required: "Phone number required",

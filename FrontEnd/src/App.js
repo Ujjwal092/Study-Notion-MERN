@@ -84,6 +84,7 @@ function App() {
           }
         />
         <Route path="/contact" element={<Contact />} />
+        {/* <-------------nested route for dashboard------------------> */}
         <Route
           element={
             <PrivateRoute>
@@ -110,6 +111,8 @@ function App() {
             </>
           )}
         </Route>
+        {/* <-------------------------------> */}
+        {/* except all these defined route will show error page */}
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

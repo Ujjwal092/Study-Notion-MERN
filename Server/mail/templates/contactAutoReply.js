@@ -1,4 +1,4 @@
-exports.courseEnrollmentEmail = (courseName, name) => {
+exports.contactReply = (name) => {
   return `
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ width="160"
 
 <tr>
 <td align="center">
-<h2>🎉 Enrollment Successful</h2>
+<h2>📩 Message Received</h2>
 </td>
 </tr>
 
@@ -39,9 +39,9 @@ Hello <b>${name}</b>,
 <tr>
 <td style="font-size:15px;color:#555;padding-top:10px">
 
-You have successfully enrolled in
+Thanks for contacting StudyNotion.
 
-<b>${courseName}</b>.
+Our support team will get back to you shortly.
 
 </td>
 </tr>
@@ -50,7 +50,7 @@ You have successfully enrolled in
 <td align="center" style="padding:30px">
 
 <a
-href="https://studynotion-edtech-project.vercel.app/dashboard"
+href="https://studynotion-edtech-project.vercel.app"
 
 style="
 background:#FFD60A;
@@ -60,7 +60,7 @@ color:black;
 text-decoration:none;
 font-weight:bold">
 
-Go To Dashboard
+Visit Website
 
 </a>
 
@@ -70,7 +70,7 @@ Go To Dashboard
 <tr>
 <td align="center" style="font-size:12px;color:#aaa">
 
-Start learning today 🚀
+© StudyNotion Support Team
 
 </td>
 </tr>
