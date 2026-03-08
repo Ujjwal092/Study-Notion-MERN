@@ -40,7 +40,7 @@ export function sendOtp(email, navigate) {
       toast.error("Could Not Send OTP");
     }
     dispatch(setLoading(false));
-    toast.dismiss(toastId);
+    toast.dismiss(toastId); //remove toast
   };
 }
 
@@ -138,8 +138,8 @@ export const googleLogin = (navigate) => async (dispatch) => {
     dispatch(setUser(userData));
     dispatch(setToken("googleLoginToken"));
 
-    localStorage.setItem("user", JSON.stringify(userData));
-    localStorage.setItem("token", "googleLoginToken");
+    localStorage.setItem("user", JSON.stringify(userData)); //stuck here
+    localStorage.setItem("token", "googleLoginToken"); //stuck here
 
     navigate("/dashboard/my-profile");
   } catch (error) {

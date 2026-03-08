@@ -84,7 +84,7 @@ function App() {
           }
         />
         <Route path="/contact" element={<Contact />} />
-        {/* <-------------nested route for dashboard------------------> */}
+        {/* <-------------nested route for dashboard and these route should be protected only logged in user will have access------------------> */}
         <Route
           element={
             <PrivateRoute>

@@ -1,13 +1,13 @@
-import { RiEditBoxLine } from "react-icons/ri"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { RiEditBoxLine } from "react-icons/ri";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { formattedDate } from "../../../utils/dateFormatter"
-import IconBtn from "../../common/IconBtn"
+import { formattedDate } from "../../../utils/dateFormatter";
+import IconBtn from "../../common/IconBtn";
 
 export default function MyProfile() {
-  const { user } = useSelector((state) => state.profile)
-  const navigate = useNavigate()
+  const { user } = useSelector((state) => state.profile);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -16,11 +16,13 @@ export default function MyProfile() {
       </h1>
       <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
         <div className="flex items-center gap-x-4">
+          {/* img + name + email */}
           <img
             src={user?.image}
             alt={`profile-${user?.firstName}`}
             className="aspect-square w-[78px] rounded-full object-cover"
           />
+
           <div className="space-y-1">
             <p className="text-lg font-semibold text-richblack-5">
               {user?.firstName + " " + user?.lastName}
@@ -28,29 +30,36 @@ export default function MyProfile() {
             <p className="text-sm text-richblack-300">{user?.email}</p>
           </div>
         </div>
+        {/* ------------------end -------*/}
         <IconBtn
           text="Edit"
           onclick={() => {
-            navigate("/dashboard/settings")
+            navigate("/dashboard/settings"); //on click edit we navigated to setting
           }}
         >
           <RiEditBoxLine />
         </IconBtn>
       </div>
+      {/* ------------------end of big box inclues everything -------*/}
+
       <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
+        {/* ---  heading + button -------*/}
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">About</p>
+
           <IconBtn
             text="Edit"
             onclick={() => {
-              navigate("/dashboard/settings")
+              navigate("/dashboard/settings");
             }}
           >
             <RiEditBoxLine />
           </IconBtn>
         </div>
+        {/* ------------------end -------*/}
         <p
           className={`${
+            //that user  additional details and updated in db
             user?.additionalDetails?.about
               ? "text-richblack-5"
               : "text-richblack-400"
@@ -59,6 +68,9 @@ export default function MyProfile() {
           {user?.additionalDetails?.about ?? "Write Something About Yourself"}
         </p>
       </div>
+
+      {/* ----------------------about section ends ------*/}
+
       <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">
@@ -67,12 +79,13 @@ export default function MyProfile() {
           <IconBtn
             text="Edit"
             onclick={() => {
-              navigate("/dashboard/settings")
+              navigate("/dashboard/settings");
             }}
           >
             <RiEditBoxLine />
           </IconBtn>
         </div>
+
         <div className="flex max-w-[500px] justify-between">
           <div className="flex flex-col gap-y-5">
             <div>
@@ -118,5 +131,5 @@ export default function MyProfile() {
         </div>
       </div>
     </>
-  )
+  );
 }
