@@ -7,7 +7,7 @@ import { removeFromCart } from "../../../../slices/cartSlice";
 
 export default function RenderCartCourses() {
   const { cart } = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); //on click - remove from cart action will be dispatched
   return (
     <div className="flex flex-1 flex-col">
       {cart.map((course, indx) => (
@@ -24,6 +24,7 @@ export default function RenderCartCourses() {
               loading="lazy"
               className="h-[148px] w-[220px] rounded-lg object-cover"
             />
+
             <div className="flex flex-col space-y-1">
               <p className="text-lg font-medium text-richblack-5">
                 {course?.courseName}
@@ -33,7 +34,7 @@ export default function RenderCartCourses() {
               </p>
               <div className="flex items-center gap-2">
                 <span className="text-yellow-5">4.5</span>
-                <ReactStars
+                <ReactStars //hardcoded
                   count={5}
                   value={course?.ratingAndReviews?.length}
                   size={20}
@@ -48,9 +49,10 @@ export default function RenderCartCourses() {
               </div>
             </div>
           </div>
+
           <div className="flex flex-col items-end space-y-2">
             <button
-              onClick={() => dispatch(removeFromCart(course._id))}
+              onClick={() => dispatch(removeFromCart(course._id))} //in cartSlice m remove from cart pada h
               className="flex items-center gap-x-1 rounded-md border border-richblack-600 bg-richblack-700 py-3 px-[12px] text-pink-200"
             >
               <RiDeleteBin6Line />

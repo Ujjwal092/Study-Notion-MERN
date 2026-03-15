@@ -16,10 +16,13 @@ function Dashboard() {
   }
 
   return (
-    <div className="relative flex min-h-[calc(100vh-3.5rem)]">
-      <Sidebar />
+    <div className="relative overflow-y-hidden flex min-h-[calc(100vh-3.5rem)]">
+      <div className="">
+        <Sidebar />
+      </div>
       <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto">
-        <div className="mx-auto w-11/12 max-w-[1000px] py-10">
+        {/* overflow auto is for content */}
+        <div className="mx-auto w-11/12 max-w-[1000px] py-6 md:py-10 px-2 md:px-0">
           <Outlet />
           {/* Renders the child route's element, if there is one. dashboard/.... so after dashboard we have nested route so it will be dynamic */}
         </div>

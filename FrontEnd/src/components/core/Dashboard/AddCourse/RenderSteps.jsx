@@ -1,12 +1,11 @@
-import { FaCheck } from "react-icons/fa"
-import { useSelector } from "react-redux"
+import { FaCheck } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
-import CourseBuilderForm from "./CourseBuilder/CourseBuilderForm"
-import CourseInformationForm from "./CourseInformation/CourseInformationForm"
-
+import CourseBuilderForm from "./CourseBuilder/CourseBuilderForm";
+import CourseInformationForm from "./CourseInformation/CourseInformationForm";
 
 export default function RenderSteps() {
-  const { step } = useSelector((state) => state.course)
+  const { step } = useSelector((state) => state.course);
 
   const steps = [
     {
@@ -21,17 +20,21 @@ export default function RenderSteps() {
       id: 3,
       title: "Publish",
     },
-  ]
+  ];
 
   return (
     <>
       <div className="relative mb-2 flex w-full justify-center">
         {steps.map((item) => (
           <>
-            <div
-              className="flex flex-col items-center "
-              key={item.id}
-            >
+            <div className="flex flex-col items-center " key={item.id}>
+              {/* logic -> 
+             if item.id  === step(from slice) toh yellow warna grey 
+             if steps > item.id toh piche wle item.id ko check mark kr do 
+             item.id != steps.length && steps>item.id se toh yellow dash warna gray dash
+
+              
+             */}
               <button
                 className={`grid cursor-default aspect-square w-[34px] place-items-center rounded-full border-[1px] ${
                   step === item.id
@@ -42,17 +45,16 @@ export default function RenderSteps() {
                 {step > item.id ? (
                   <FaCheck className="font-bold text-richblack-900" />
                 ) : (
-                  item.id
+                  item.id //check that items id
                 )}
               </button>
-              
             </div>
             {item.id !== steps.length && (
               <>
                 <div
                   className={`h-[calc(34px/2)] w-[33%]  border-dashed border-b-2 ${
-                  step > item.id  ? "border-yellow-50" : "border-richblack-500"
-                } `}
+                    step > item.id ? "border-yellow-50" : "border-richblack-500"
+                  } `}
                 ></div>
               </>
             )}
@@ -67,23 +69,24 @@ export default function RenderSteps() {
               className="flex min-w-[130px] flex-col items-center gap-y-2"
               key={item.id}
             >
-              
+              {/* title of the course */}
               <p
-                className={`text-sm ${
-                  step >= item.id ? "text-richblack-5" : "text-richblack-500"
-                }`}
+                className={`text-sm
+                   ${
+                     step >= item.id ? "text-richblack-5" : "text-richblack-500"
+                   }`}
               >
                 {item.title}
               </p>
             </div>
-            
           </>
         ))}
       </div>
+
       {/* Render specific component based on current step */}
       {step === 1 && <CourseInformationForm />}
       {step === 2 && <CourseBuilderForm />}
       {/* {step === 3 && <PublishCourse />} */}
     </>
-  )
+  );
 }
