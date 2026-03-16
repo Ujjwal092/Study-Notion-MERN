@@ -157,7 +157,7 @@ export default function CourseInformationForm() {
     formData.append("thumbnailImage", data.courseImage);
     setLoading(true);
 
-    const result = await addCourseDetails(formData, token);
+    const result = await addCourseDetails(formData, token); //api call for adding course and dispatch to step 2
     if (result) {
       dispatch(setStep(2));
       dispatch(setCourse(result));
@@ -321,7 +321,7 @@ export default function CourseInformationForm() {
         errors={errors}
         getValues={getValues}
       />
-      {/* Next Button pending*/}
+      {/* Next Button */}
       <div className="flex justify-end gap-x-2">
         {editCourse && (
           <button
@@ -332,6 +332,7 @@ export default function CourseInformationForm() {
             Continue Without Saving
           </button>
         )}
+
         <IconBtn
           disabled={loading}
           text={!editCourse ? "Next" : "Save Changes"}

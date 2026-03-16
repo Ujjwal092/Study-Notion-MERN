@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function RequirementsField({
   name,
@@ -7,44 +7,50 @@ export default function RequirementsField({
   register,
   setValue,
   errors,
-  getValues,
+  getValues, //props
 }) {
-  const { editCourse, course } = useSelector((state) => state.course)
-  const [requirement, setRequirement] = useState("")
-  const [requirementsList, setRequirementsList] = useState([])
+  const { editCourse, course } = useSelector((state) => state.course);
+  const [requirement, setRequirement] = useState("");
+  const [requirementsList, setRequirementsList] = useState([]);
 
   useEffect(() => {
     if (editCourse) {
-      setRequirementsList(course?.instructions)
+      //form filling ho rha h
+      setRequirementsList(course?.instructions);
     }
-    register(name, { required: true, validate: (value) => value.length > 0 })
+    register(name, {
+      required: true,
+      validate: (value) => value.length > 0,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   useEffect(() => {
-    setValue(name, requirementsList)
+    setValue(name, requirementsList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [requirementsList])
+  }, [requirementsList]);
 
   const handleAddRequirement = () => {
     if (requirement) {
-      setRequirementsList([...requirementsList, requirement])
-      setRequirement("")
+      setRequirementsList([...requirementsList, requirement]);
+      setRequirement("");
     }
-  }
+  };
 
   const handleRemoveRequirement = (index) => {
-    const updatedRequirements = [...requirementsList]
-    updatedRequirements.splice(index, 1)
-    setRequirementsList(updatedRequirements)
-  }
+    const updatedRequirements = [...requirementsList];
+    updatedRequirements.splice(index, 1); //starting index and count
+    setRequirementsList(updatedRequirements);
+  };
 
   return (
     <div className="flex flex-col space-y-2">
       <label className="text-sm text-richblack-5" htmlFor={name}>
         {label} <sup className="text-pink-200">*</sup>
       </label>
+
       <div className="flex flex-col items-start space-y-2">
+        {/* REQUIREMENT WALA SECTION FILL KRNE PR */}
         <input
           type="text"
           id={name}
@@ -52,6 +58,7 @@ export default function RequirementsField({
           onChange={(e) => setRequirement(e.target.value)}
           className="form-style w-full"
         />
+        {/* ADD KRNE PR  */}
         <button
           type="button"
           onClick={handleAddRequirement}
@@ -60,11 +67,14 @@ export default function RequirementsField({
           Add
         </button>
       </div>
+
+      {/* DISPLAYING THE ADDED VALUES  */}
       {requirementsList.length > 0 && (
         <ul className="mt-2 list-inside list-disc">
           {requirementsList.map((requirement, index) => (
             <li key={index} className="flex items-center text-richblack-5">
               <span>{requirement}</span>
+
               <button
                 type="button"
                 className="ml-2 text-xs text-pure-greys-300 "
@@ -82,5 +92,5 @@ export default function RequirementsField({
         </span>
       )}
     </div>
-  )
+  );
 }

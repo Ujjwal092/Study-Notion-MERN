@@ -1,187 +1,150 @@
-import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
-import { createSubSection, updateSubSection } from '../../../../../services/operations/courseDetailsAPI';
-import { setCourse } from '../../../../../slices/courseSlice';
-import { Form } from 'react-router-dom';
-import {RxCross1} from "react-icons/rx"
-import Upload from '../Upload';
-import IconBtn from '../../../../common/IconBtn';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { RxCross1 } from "react-icons/rx";
+
+import Upload from "../Upload";
+import IconBtn from "../../../../common/IconBtn";
+
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
+
+import {
+  createSubSection,
+  updateSubSection,
+} from "../../../../../services/operations/courseDetailsAPI";
+import { setCourse } from "../../../../../slices/courseSlice";
 
 const SubSectionModal = ({
-    modalData,
-    setModalData,
-    add = false,
-    view = false,
-    edit = false,
+  modalData,
+  setModalData,
+  add = false,
+  view = false,
+  edit = false,
 }) => {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+    getValues,
+  } = useForm();
 
-    const {
-        register, 
-        handleSubmit, 
-        setValue,
-        formState: {errors},
-        getValues,
-    } = useForm();
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
-    const [loading, setLoading] = useState(false);
-    const {course} = useSelector((state) => state.course);
-    const {token} = useSelector((state) => state.auth);
+  const { token } = useSelector((state) => state.auth);
 
-    useEffect(() => {
-        if(view || edit) {
-            setValue("lectureTitle", modalData.title);
-            setValue("lectureDesc", modalData.description);
-            setValue("lectureVideo", modalData.videoUrl);
-        }
-    },[]);
+  const [loading, setLoading] = useState(false);
 
-    const isFormUpdated = () => {
-        const currentValues = getValues();
-        if(currentValues.lectureTitle !== modalData.title ||
-            currentValues.lectureDesc !== modalData.description ||
-            currentValues.lectureVideo !== modalData.videoUrl ) {
-                return true;
-            }
-        else {
-            return false;
-        }
-
+  useEffect(() => {
+    if (view || edit) {
+      setValue("lectureTitle", modalData.title);
+      setValue("lectureDesc", modalData.description);
+      setValue("lectureVideo", modalData.videoUrl);
     }
-    const handleEditSubSection = async () => {
+  }, []);
 
-        const currentValues = getValues();
-        const formData = new FormData();
+  const onSubmit = async (data) => {
+    if (view) return;
 
-        formData.append("sectionId", modalData.sectionId);
-        formData.append("subSectionId", modalData._id);
+    const formData = new FormData();
 
-        if(currentValues.lectureTitle !== modalData.title) {
-            formData.append("title", currentValues.lectureTitle);
-        }
+    setLoading(true);
 
-        if(currentValues.lectureDesc !== modalData.description) {
-            formData.append("description", currentValues.lectureDesc);
-        }
+    if (edit) {
+      formData.append("sectionId", modalData.sectionId);
+      formData.append("subSectionId", modalData._id);
+      formData.append("title", data.lectureTitle);
+      formData.append("description", data.lectureDesc);
+      formData.append("video", data.lectureVideo);
 
-        if(currentValues.lectureVideo !== modalData.videoUrl) {
-            formData.append("video", currentValues.lectureVideo);
-        }
+      const result = await updateSubSection(formData, token);
 
-        setLoading(true);
-        //API call
-        const result  = await updateSubSection(formData, token);
-        if(result) {
-            //TODO: same check 
-            dispatch(setCourse(result));
-        }
-        setModalData(null);
-        setLoading(false);
+      if (result) dispatch(setCourse(result));
+    } else {
+      formData.append("sectionId", modalData);
+      formData.append("title", data.lectureTitle);
+      formData.append("description", data.lectureDesc);
+      formData.append("video", data.lectureVideo);
+
+      const result = await createSubSection(formData, token);
+
+      if (result) dispatch(setCourse(result));
     }
 
-    const onSubmit = async (data) => {
-
-        if(view)
-            return;
-
-        if(edit) {
-            if(!isFormUpdated) {
-                toast.error("No changes made to the form")
-            }
-            else {
-                //edit krdo store me 
-                handleEditSubSection();
-            }
-            return;
-        }
-
-        //ADD
-
-        const formData = new FormData();
-        formData.append("sectionId", modalData);
-        formData.append("title", data.lectureTitle);
-        formData.append("description", data.lectureDesc);
-        formData.append("video", data.lectureVideo);
-        setLoading(true);
-        //API CALL
-        const result = await createSubSection(formData, token);
-
-        if(result) {
-            //TODO: check for updation
-            dispatch(setCourse(result))
-        }
-        setModalData(null);
-        setLoading(false);
-
-    }
-
+    setModalData(null);
+    setLoading(false);
+  };
 
   return (
-    <div>
-      
-        <div>
-            <div>
-                <p>{view && "Viewing"} {add && "Adding"} {edit && "Editing"} Lecture</p>
-                <button onClick={() => (!loading ? setModalData(null): {})}>
-                    <RxCross1 />
-                </button>
-            </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Upload 
-                    name="lectureVideo"
-                    label="Lecture Video"
-                    register={register}
-                    setValue={setValue}
-                    errors={errors}
-                    video={true}
-                    viewData={view ? modalData.videoUrl: null}
-                    editData={edit ? modalData.videoUrl: null}
-                />
-                <div>
-                    <label>Lecture Title</label>
-                    <input 
-                        id='lectureTitle'
-                        placeholder='Enter Lecture Title'
-                        {...register("lectureTitle", {required:true})}
-                        className='w-full'
-                    />
-                    {errors.lectureTitle && (<span>
-                        Lecture Title is required
-                    </span>)}
-                </div>
-                <div>
-                    <label>Lecture Description</label>
-                    <textarea 
-                        id='lectureDesc'
-                        placeholder='Enter Lecture Description'
-                        {...register("lectureDesc", {required:true})}
-                        className='w-full min-h-[130px]'
-                    />
-                    {
-                        errors.lectureDesc && (<span>
-                            Lecture Description is required
-                        </span>)
-                    }
-                </div>
+    <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
+      <div className="bg-richblack-800 rounded-lg w-[90%] max-w-[600px] p-6 border border-richblack-600">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-6">
+          <p className="text-lg font-semibold text-richblack-5">
+            {view && "Viewing"}
+            {add && "Adding"}
+            {edit && "Editing"} Lecture
+          </p>
 
-                {
-                    !view && (
-                        <div>
-                            <IconBtn 
-                                text={loading ? "Loading...": edit ? "Save Changes" : "Save"}
-                            />
-                        </div>
-                    )
-                }
-            </form>
+          <button onClick={() => (!loading ? setModalData(null) : {})}>
+            <RxCross1 />
+          </button>
         </div>
 
-    </div>
-  )
-}
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+          <Upload
+            name="lectureVideo"
+            label="Lecture Video"
+            register={register}
+            setValue={setValue}
+            errors={errors}
+            video={true}
+            viewData={view ? modalData.videoUrl : null}
+            editData={edit ? modalData.videoUrl : null}
+          />
 
-export default SubSectionModal
-//PAANI BREAK - 2min
+          <div>
+            <label className="text-sm text-richblack-5">Lecture Title</label>
+
+            <input
+              {...register("lectureTitle", { required: true })}
+              className="w-full mt-2 rounded-md bg-richblack-700 p-3"
+              placeholder="Enter Lecture Title"
+            />
+
+            {errors.lectureTitle && (
+              <span className="text-pink-200 text-xs">
+                Lecture Title is required
+              </span>
+            )}
+          </div>
+
+          <div>
+            <label className="text-sm text-richblack-5">
+              Lecture Description
+            </label>
+
+            <textarea
+              {...register("lectureDesc", { required: true })}
+              className="w-full mt-2 rounded-md bg-richblack-700 p-3 min-h-[120px]"
+              placeholder="Enter Lecture Description"
+            />
+          </div>
+
+          {!view && (
+            <div className="flex justify-end mt-4">
+              <IconBtn
+                type="submit"
+                text={loading ? "Saving..." : edit ? "Save Changes" : "Save"}
+              />
+            </div>
+          )}
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default SubSectionModal;
