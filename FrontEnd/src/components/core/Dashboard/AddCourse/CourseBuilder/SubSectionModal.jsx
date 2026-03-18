@@ -36,6 +36,7 @@ export default function SubSectionModal({
   const { token } = useSelector((state) => state.auth);
   const { course } = useSelector((state) => state.course);
 
+  //if view do nothing and if edit setValue
   useEffect(() => {
     if (view || edit) {
       // console.log("modalData", modalData)

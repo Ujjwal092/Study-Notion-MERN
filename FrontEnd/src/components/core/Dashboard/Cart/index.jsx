@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"
 
-import RenderCartCourses from "./RenderCartCourses";
-import RenderTotalAmount from "./RenderTotalAmount";
+import RenderCartCourses from "./RenderCartCourses"
+import RenderTotalAmount from "./RenderTotalAmount"
 
 export default function Cart() {
-  const { total, totalItems } = useSelector((state) => state.cart);
-  // useSelector Redux store se data read karne ke liye use hota hai. toh flow will be cartSlice  →  store  →  component
+  const { total, totalItems } = useSelector((state) => state.cart)
+
   return (
     <>
       <h1 className="mb-14 text-3xl font-medium text-richblack-5">Cart</h1>
@@ -23,5 +23,5 @@ export default function Cart() {
         </p>
       )}
     </>
-  );
+  )
 }
