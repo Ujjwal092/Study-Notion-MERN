@@ -15,7 +15,7 @@ import Banner from "../assets/Images/banner.mp4";
 
 const Home = () => {
   return (
-    <div className="bg-richblack-900">
+    <div className="bg-richblack-900 overflow-x-hidden">
       {/* HERO SECTION */}
       <section className="relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white">
         {/* Instructor CTA */}
@@ -86,9 +86,8 @@ const Home = () => {
           glowColor="blue"
           heading={
             <div className="text-4xl font-semibold">
-              Unlock Your
-              <HighlightText text={"coding potential"} /> with our online
-              courses
+              Unlock Your <HighlightText text={"coding potential"} /> with our
+              online courses
             </div>
           }
           subheading="Our courses are designed by industry experts with years of experience."
@@ -121,9 +120,8 @@ const Home = () => {
           glowColor="yellow"
           heading={
             <div className="text-4xl font-semibold">
-              Start learning
-              <HighlightText text={"coding with projects"} /> One step solution
-              for your success
+              Start learning <HighlightText text={"coding with projects"} /> One
+              step solution for your success
             </div>
           }
           subheading="Learn coding through real-world projects and hands-on practice."
@@ -158,7 +156,7 @@ greet("Future Developer")`}
       <section className="bg-pure-greys-5 text-richblack-700">
         {/* CTA BANNER */}
         <div className="homepage_bg h-[310px] flex items-center">
-          <div className="w-11/12 max-w-maxContent mx-auto flex justify-center gap-7 text-white mt-4">
+          <div className="w-11/12 max-w-[1200px] mx-auto flex justify-center gap-7 text-white mt-4">
             <CTAButton active={true} linkto="/signup">
               <div className="flex items-center gap-3">
                 Explore Full Catalog
@@ -173,10 +171,10 @@ greet("Future Developer")`}
         </div>
 
         {/* SKILLS SECTION */}
-        <div className="mx-auto w-11/12 max-w-maxContent flex flex-col gap-16 py-16">
+        <div className="mx-auto w-11/12 max-w-[1200px] flex flex-col gap-16 py-16">
           <div className="flex flex-col lg:flex-row gap-10">
             <div className="text-4xl font-semibold lg:w-[45%]">
-              Get the Skills you need for a
+              Get the Skills you need for a{" "}
               <HighlightText text={"Job that is in demand"} />
             </div>
 
@@ -199,7 +197,7 @@ greet("Future Developer")`}
       </section>
 
       {/* SECTION 3 */}
-      <section className="w-11/12 mx-auto max-w-maxContent flex flex-col items-center gap-10 py-16 text-white">
+      <section className="w-11/12 mx-auto max-w-[1200px] flex flex-col items-center gap-10 py-16 text-white">
         <InstructorSection />
 
         <h2 className="text-center text-4xl font-semibold">

@@ -5,7 +5,7 @@ import { apiConnector } from "../services/apiconnector";
 import { categories } from "../services/apis";
 import { getCatalogaPageData } from "../services/operations/pageAndComponentData";
 import Course_Card from "../components/core/Catalog/Course_Card";
-import CourseSlider from "../components/core/Catalog/CourseSlider";
+import Course_Slider from "../components/core/Catalog/Course_Slider";
 
 const Catalog = () => {
   const { catalogName } = useParams(); //url se category name lerha means /catalog/web -> catalogName = "web"
@@ -64,7 +64,7 @@ const Catalog = () => {
             <p>New</p>
           </div>
           <div>
-            <CourseSlider
+            <Course_Slider
               Courses={catalogPageData?.data?.selectedCategory?.courses}
             />
             {/* mtlb categoryPagedData fetch krke laaye specific catgeoryId ke liye */}
@@ -78,7 +78,7 @@ const Catalog = () => {
             Top Courses in {catalogPageData?.data?.selectedCategory?.name}
           </div>
           <div>
-            <CourseSlider
+            <Course_Slider
               Courses={catalogPageData?.data?.differentCategory?.courses}
             />
           </div>
