@@ -50,6 +50,10 @@ const {
   isStudent,
   isAdmin,
 } = require("../middlewares/auth");
+const {
+  updateCourseProgress,
+  getProgressPercentage,
+} = require("../controllers/courseProgress");
 
 // ********************************************************************************************************
 //                                      Course routes
@@ -81,12 +85,15 @@ router.post("/editCourse", auth, isInstructor, editCourse);
 router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses);
 // Delete a Course
 router.delete("/deleteCourse", deleteCourse);
+router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
+// To get Course Progress
+router.post("/getProgressPercentage", auth, isStudent, getProgressPercentage);
+// Delete a Course
 
 // ********************************************************************************************************
 //                                      Category routes (Only by Admin)
 // ********************************************************************************************************
 // Category can Only be Created by Admin
-// TODO: Put IsAdmin Middleware here
 router.post("/createCategory", auth, isAdmin, createCategory);
 router.get("/showAllCategories", showAllCategories);
 router.post("/getCategoryPageDetails", categoryPageDetails);

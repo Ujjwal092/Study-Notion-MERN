@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table";
-import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+
 import { setCourse, setEditCourse } from "../../../../slices/courseSlice";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import { useState } from "react";
@@ -10,7 +10,7 @@ import { HiClock } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
-import { formattedDate } from "../../../../utils/dateFormatter";
+import { formatDate } from "../../../../services/formatDate";
 import {
   deleteCourse,
   fetchInstructorCourses,
@@ -37,6 +37,18 @@ export default function CoursesTable({ courses, setCourses }) {
     setLoading(false);
   };
 
+  const calculateDuration = (course) => {
+    let total = 0;
+
+    course.courseContent?.forEach((section) => {
+      section.subSection?.forEach((sub) => {
+        total += sub.timeDuration || 0;
+      });
+    });
+    console.log("course", course.courseContent);
+
+    return (total / 60).toFixed(1);
+  };
   // console.log("All Course ", courses)
 
   return (
@@ -58,7 +70,6 @@ export default function CoursesTable({ courses, setCourses }) {
             </Th>
           </Tr>
         </Thead>
-
         <Tbody>
           {courses?.length === 0 ? (
             <Tr>
@@ -93,7 +104,7 @@ export default function CoursesTable({ courses, setCourses }) {
                         : course.courseDescription}
                     </p>
                     <p className="text-[12px] text-white">
-                      Created: {formattedDate(course.createdAt)}
+                      Created: {formatDate(course.createdAt)}
                     </p>
                     {course.status === COURSE_STATUS.DRAFT ? (
                       <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-richblack-700 px-2 py-[2px] text-[12px] font-medium text-pink-100">
@@ -111,10 +122,10 @@ export default function CoursesTable({ courses, setCourses }) {
                   </div>
                 </Td>
                 <Td className="text-sm font-medium text-richblack-100">
-                  2hr 30min
+                  {calculateDuration(course)} hrs
                 </Td>
                 <Td className="text-sm font-medium text-richblack-100">
-                  ₹{course.price}
+                  ₹ {course.price}
                 </Td>
                 <Td className="text-sm font-medium text-richblack-100 ">
                   <button

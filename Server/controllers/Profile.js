@@ -159,8 +159,11 @@ exports.getEnrolledCourses = async (req, res) => {
         },
       })
       .exec();
+
     userDetails = userDetails.toObject();
+
     var SubsectionLength = 0;
+
     for (var i = 0; i < userDetails.courses.length; i++) {
       let totalDurationInSeconds = 0;
       SubsectionLength = 0;
@@ -212,30 +215,31 @@ exports.getEnrolledCourses = async (req, res) => {
   }
 };
 
-// exports.instructorDashboard = async (req, res) => {
-//   try {
-//     const courseDetails = await Course.find({ instructor: req.user.id })
+exports.instructorDashboard = async (req, res) => {
+  try {
+    const courses = await Course.find({ instructor: req.user.id });
 
-//     const courseData = courseDetails.map((course) => {
-//       const totalStudentsEnrolled = course.studentsEnroled.length
-//       const totalAmountGenerated = totalStudentsEnrolled * course.price
+    const data = courses.map((course) => {
+      const students = course.studentsEnrolled || [];
 
-//       // Create a new object with the additional fields
-//       const courseDataWithStats = {
-//         _id: course._id,
-//         courseName: course.courseName,
-//         courseDescription: course.courseDescription,
-//         // Include other course properties as needed
-//         totalStudentsEnrolled,
-//         totalAmountGenerated,
-//       }
+      return {
+        courseName: course.courseName || "Untitled",
+        totalStudentsEnrolled: students.length,
+        totalAmountGenerated: students.length * (course.price || 0),
+      };
+    });
 
-//       return courseDataWithStats
-//     })
+    return res.status(200).json({
+      success: true,
+      data,
+    });
+  } catch (error) {
+    console.error("DASHBOARD ERROR:", error);
 
-//     res.status(200).json({ courses: courseData })
-//   } catch (error) {
-//     console.error(error)
-//     res.status(500).json({ message: "Server Error" })
-//   }
-// }
+    return res.status(500).json({
+      success: false,
+      message: "Dashboard error",
+      error: error.message,
+    });
+  }
+};

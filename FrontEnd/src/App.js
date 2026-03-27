@@ -33,7 +33,7 @@ import Cart from "./components/core/Dashboard/Cart";
 import AddCourse from "./components/core/Dashboard/AddCourse";
 import MyCourses from "./components/core/Dashboard/MyCourses";
 import EditCourse from "./components/core/Dashboard/EditCourse";
-
+import Instructor from "./components/core/Dashboard/Instructor";
 // View Course
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 
@@ -46,12 +46,13 @@ function App() {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.profile);
 
-  // 🔥 Load user if token exists
+  //  Load user if token exists
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      const token = JSON.parse(localStorage.getItem("token"));
+      const token = localStorage.getItem("token");
       dispatch(getUserDetails(token, navigate));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -60,14 +61,14 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* 🔹 PUBLIC ROUTES */}
+        {/*  PUBLIC ROUTES */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="catalog/:catalogName" element={<Catalog />} />
         <Route path="courses/:courseId" element={<CourseDetails />} />
 
-        {/* 🔹 AUTH ROUTES (only when NOT logged in) */}
+        {/* AUTH ROUTES (only when NOT logged in) */}
         <Route
           path="/login"
           element={
@@ -109,7 +110,7 @@ function App() {
           }
         />
 
-        {/* 🔹 DASHBOARD (WITH SIDEBAR) */}
+        {/*  DASHBOARD  */}
         <Route
           element={
             <PrivateRoute>
@@ -135,6 +136,7 @@ function App() {
           {/* INSTRUCTOR ROUTES */}
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
+              <Route path="dashboard/instructor" element={<Instructor />} />
               <Route path="dashboard/add-course" element={<AddCourse />} />
               <Route path="dashboard/my-courses" element={<MyCourses />} />
               <Route
@@ -145,7 +147,7 @@ function App() {
           )}
         </Route>
 
-        {/* 🔥 VIEW COURSE (SEPARATE PAGE - NO DASHBOARD SIDEBAR) */}
+        {/* VIEW COURSE */}
         <Route
           path="/view-course/:courseId"
           element={
@@ -161,7 +163,7 @@ function App() {
           />
         </Route>
 
-        {/* 🔹 ERROR */}
+        {/* ERROR */}
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

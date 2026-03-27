@@ -6,7 +6,9 @@ const User = require("../models/User");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 const CourseProgress = require("../models/CourseProgress");
 const { convertSecondsToDuration } = require("../utils/secToDuration");
+
 // Function to create a new course
+
 exports.createCourse = async (req, res) => {
   try {
     // Get user ID from request object
@@ -155,7 +157,7 @@ exports.editCourse = async (req, res) => {
 
     // Update only the fields that are present in the request body
     for (const key in updates) {
-      if (updates.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(updates, key)) {
         if (key === "tag" || key === "instructions") {
           course[key] = JSON.parse(updates[key]);
         } else {
@@ -423,7 +425,14 @@ exports.getInstructorCourses = async (req, res) => {
     // Find all courses belonging to the instructor
     const instructorCourses = await Course.find({
       instructor: instructorId,
-    }).sort({ createdAt: -1 });
+    })
+      .populate({
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
+      })
+      .sort({ createdAt: -1 });
 
     // Return the instructor's courses
     res.status(200).json({
