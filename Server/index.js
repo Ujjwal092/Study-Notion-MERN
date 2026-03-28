@@ -11,50 +11,60 @@ const database = require("./config/database");
 const cookieParser = require("cookie-parser");
 const { connectRedis } = require("./config/redis");
 
-/**CORS (Cross-Origin Resource Sharing) ka use web development me frontend aur backend ko communicate karne ke liye hota hai jab dono alag domains / ports par chal rahe ho. */
 const cors = require("cors");
 const { cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 
 const dotenv = require("dotenv");
 dotenv.config();
-const PORT = process.env.PORT || 5000;
-//db connect
-database.connect();
 
-connectRedis();
-//middleware
+const PORT = process.env.PORT || 5000;
+
+// middleware
 app.use(express.json());
 app.use(cookieParser());
-//req from frontend is entertained by backend
+
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "*",
     credentials: true,
   }),
 );
+
 app.use(
   fileUpload({
     useTempFiles: true,
     tempFileDir: "/tmp",
   }),
 );
-//cloudinary connect
-cloudinaryConnect();
-//routes mount
+
+// routes
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/course", courseRoutes);
 app.use("/api/v1/payment", paymentRoutes);
 app.use("/api/v1/reach", contactRoutes);
 
-//def routes
 app.get("/", (req, res) => {
-  return res.json({
+  res.json({
     success: true,
     message: "Server is running",
   });
 });
-app.listen(PORT, () => {
-  console.log(`App is running at ${PORT}`);
-});
+
+//  start server properly
+const startServer = async () => {
+  try {
+    await database.connect();
+    await connectRedis();
+    cloudinaryConnect();
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on ${PORT}`);
+    });
+  } catch (error) {
+    console.log("❌ Server start failed", error);
+  }
+};
+
+startServer();
