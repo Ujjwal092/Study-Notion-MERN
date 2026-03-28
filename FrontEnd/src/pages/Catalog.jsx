@@ -5,6 +5,7 @@ import { apiConnector } from "../services/apiconnector";
 import { categories } from "../services/apis";
 import { getCatalogaPageData } from "../services/operations/pageAndComponentData";
 import Course_Card from "../components/core/Catalog/Course_Card";
+import ReviewSlider from "../components/common/ReviewSlider";
 
 const Catalog = () => {
   const { catalogName } = useParams();
@@ -125,6 +126,17 @@ const Catalog = () => {
               </div>
             ))}
         </div>
+      </div>
+      <h1 className="text-center text-2xl md:text-4xl font-semibold leading-tight text-white">
+        What Our{" "}
+        <span className="bg-gradient-to-r from-caribbeangreen-100 to-yellow-200 bg-clip-text text-transparent">
+          Learners Say
+        </span>
+      </h1>
+
+      <div className="w-11/12 mx-auto max-w-[1200px] flex flex-col items-center gap-10 py-16 ">
+        {/* review slider */}
+        <ReviewSlider />
       </div>
 
       <Footer />

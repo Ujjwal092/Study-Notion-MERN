@@ -10,12 +10,13 @@ import LearningLanguageSection from "../components/core/HomePage/LearningLanguag
 import InstructorSection from "../components/core/HomePage/InstructorSection";
 import ExploreMore from "../components/core/HomePage/ExploreMore";
 import Footer from "../components/common/Footer";
+import ReviewSlider from "../components/common/ReviewSlider";
 
 import Banner from "../assets/Images/banner.mp4";
 
 const Home = () => {
   return (
-    <div className="bg-richblack-900 overflow-x-hidden">
+    <div className="bg-richblack-900 overflow-x-hidden ">
       {/* HERO SECTION */}
       <section className="relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white">
         {/* Instructor CTA */}
@@ -200,11 +201,15 @@ greet("Future Developer")`}
       <section className="w-11/12 mx-auto max-w-[1200px] flex flex-col items-center gap-10 py-16 text-white">
         <InstructorSection />
 
-        <h2 className="text-center text-4xl font-semibold">
-          Reviews from Other Learners
-        </h2>
+        <h1 className="text-center text-2xl md:text-4xl font-semibold leading-tight">
+          What Our{" "}
+          <span className="bg-gradient-to-r from-caribbeangreen-100 to-yellow-200 bg-clip-text text-transparent">
+            Learners Say
+          </span>
+        </h1>
 
         {/* review slider */}
+        <ReviewSlider />
       </section>
 
       {/* FOOTER */}

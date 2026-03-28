@@ -11,6 +11,7 @@ import LearningGrid from "../components/core/AboutPage/LearningGrid";
 import Quote from "../components/core/AboutPage/Quote";
 import StatsComponenet from "../components/core/AboutPage/Stats";
 import HighlightText from "../components/core/HomePage/HighlightText";
+import ReviewSlider from "../components/common/ReviewSlider";
 
 const About = () => {
   return (
@@ -133,9 +134,14 @@ const About = () => {
 
       {/* REVIEWS */}
       <section className="mx-auto my-20 w-11/12 max-w-maxContent text-white flex flex-col items-center gap-8">
-        <h1 className="text-center text-4xl font-semibold">
-          Reviews from other learners
+        <h1 className="text-center text-2xl md:text-4xl font-semibold leading-tight">
+          What Our{" "}
+          <span className="bg-gradient-to-r from-caribbeangreen-100 to-yellow-200 bg-clip-text text-transparent">
+            Learners Say
+          </span>
         </h1>
+        {/* review slider */}
+        <ReviewSlider />
       </section>
 
       <Footer />

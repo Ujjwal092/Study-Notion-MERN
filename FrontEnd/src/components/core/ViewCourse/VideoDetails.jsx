@@ -167,6 +167,11 @@ const VideoDetails = () => {
     }
     setLoading(false);
   };
+  // console.log("PARAMS:", {
+  //   courseId,
+  //   sectionId,
+  //   subSectionId,
+  // });
 
   return (
     <div className="flex flex-col gap-5 text-white">

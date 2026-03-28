@@ -208,7 +208,7 @@ function Navbar() {
 
               <div className="my-6 h-[1px] bg-richblack-700" />
 
-              {/* Auth */}
+              {/* Auth if logged in toh dashbi=oard and cart wlka buttn warna signup login wala */}
               {token === null ? (
                 <div className="flex flex-col gap-3">
                   <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
@@ -225,7 +225,7 @@ function Navbar() {
               ) : (
                 <div className="flex flex-col gap-3">
                   <Link
-                    to="/dashboard"
+                    to="/dashboard/my-profile"
                     onClick={() => setMobileMenuOpen(false)}
                     className="px-3 py-2 rounded-md  text-yellow-50 hover:bg-richblack-700 transition-all duration-200"
                   >

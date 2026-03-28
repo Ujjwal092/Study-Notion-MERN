@@ -344,6 +344,7 @@ exports.getCourseDetails = async (req, res) => {
     });
   }
 };
+
 exports.getFullCourseDetails = async (req, res) => {
   try {
     const { courseId } = req.body;

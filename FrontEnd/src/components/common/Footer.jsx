@@ -22,7 +22,7 @@ const Footer = () => {
   return (
     <div className="bg-richblack-800 text-richblack-300 border-t border-richblack-700 overflow-x-hidden">
       <div className="w-11/12 max-w-[1200px] mx-auto py-14">
-        {/* 🔥 Gradient Line */}
+        {/*  Gradient Line */}
         <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-yellow-500 to-transparent mb-10"></div>
 
         {/* 🔹 TOP SECTION */}

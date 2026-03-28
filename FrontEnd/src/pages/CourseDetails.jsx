@@ -233,7 +233,7 @@ function CourseDetails() {
         </div>
       </div>
 
-      {/* 🔥 WHAT YOU WILL LEARN */}
+      {/*  WHAT YOU WILL LEARN */}
       <div className="max-w-maxContent mx-auto px-6 py-14">
         <h2 className="text-xl font-semibold mb-6">What you'll learn</h2>
 
@@ -248,7 +248,7 @@ function CourseDetails() {
         </div>
       </div>
 
-      {/* 🔥 COURSE CONTENT */}
+      {/*  COURSE CONTENT */}
       <div className="max-w-maxContent mx-auto px-6 pb-16">
         <div className="flex flex-col gap-4 mb-8">
           <h2 className="text-xl font-semibold">Course Content</h2>
