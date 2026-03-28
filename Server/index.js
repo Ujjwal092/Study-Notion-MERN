@@ -26,7 +26,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://studynotion-sandy-seven.vercel.app",
     credentials: true,
   }),
 );
